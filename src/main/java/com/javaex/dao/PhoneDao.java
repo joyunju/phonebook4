@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -91,6 +92,19 @@ public class PhoneDao {
 
 	}
 
+	// 사람추가 : Map 을 사용하는 사강의 상황 : 문법 설명
+	public int personInsert2(Map<String, String> pMap) {
+		System.out.println("PhoneDao>personInsert2");
+
+		int count = -1;
+		count = sqlSession.insert("phonebook.personInsert2", pMap);
+
+		System.out.println(count + "건 등록되었습니다.");
+		return count;
+
+	}
+
+	
 	// 사람 삭제
 	public int personDelete(int no) {
 		System.out.println("PhoneDao>personDelete");

@@ -57,7 +57,10 @@ public class PhoneController {
 
 		// Service를 통해서 저장한다
 		// phoneService.personInsert(personVo);
-		int count = phoneService.personInsert(personVo);
+		// int count = phoneService.personInsert(personVo);
+
+		// Map 테스트용
+		int count = phoneService.personInsert2();
 
 		// 리다이렉트
 		return "redirect:/list";

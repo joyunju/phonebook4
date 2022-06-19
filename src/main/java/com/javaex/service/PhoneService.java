@@ -1,6 +1,8 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,21 @@ public class PhoneService {
 		System.out.println("PhoneService>PersonInsert()");
 
 		int count = phoneDao.personInsert(vo);
+
+		return count;
+	}
+
+	// 전화번호 등록 (Map 을 사용하는 사강의 상황 : 문법 설명)
+	public int personInsert2() {
+		System.out.println("PhoneService>PersonInsert2()");
+
+		// map을 만들어 사용한다* --> 1회성
+		Map<String, String> pMap = new HashMap<String, String>();
+		pMap.put("name", "오레오");
+		pMap.put("hp", "010-3333-3333");
+		pMap.put("company", "02-3333-3333");
+
+		int count = phoneDao.personInsert2(pMap);
 
 		return count;
 	}
