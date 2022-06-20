@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -31,17 +32,22 @@
 				<td><a href ="/phonebook4/updateForm/${personVo.personId }">[수정폼]</a></td>
 				<td><a href="/phonebook4/delete/${personVo.personId },${personVo.name}">[삭제]</a></td>
 				-->
-				
-				<td><a href="./updateForm?no=${personVo.personId }">[수정폼]</a></td>
-				<td><a href="./delete?no=${personVo.personId }">[삭제]</a></td>
-				 
+
+				<td>
+					<a href="./updateForm?no=${personVo.personId }">[수정폼]</a>
+					<a href="./updateForm2?no=${personVo.personId }">[수정폼2]</a>
+				</td>
+				<td>
+					<a href="./delete?no=${personVo.personId }">[삭제]</a>
+				</td>
+
 			</tr>
 		</table>
 		<br>
 	</c:forEach>
-	
+
 	<br>
-	
-	<a href = "/phonebook4/writeForm">전화번호 등록</a>
+
+	<a href="/phonebook4/writeForm">전화번호 등록</a>
 </body>
 </html>
