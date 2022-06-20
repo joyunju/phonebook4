@@ -23,7 +23,7 @@
 		<input type="hidden" name="personId" value=${personVo.personId }><br> 
 		 -->
 		 
-		<button type="submit">등록</button>
+		<button type="submit">수정</button>
 	</form>
 
 
