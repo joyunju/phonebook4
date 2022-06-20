@@ -142,8 +142,9 @@ public class PhoneController {
 
 		Map<String, Object> pMap = phoneService.getPerson2(no);
 		
-		String name = (String)pMap.get("NAME");
-		System.out.println(name);
+		// 연결 확인용 
+//		String name = (String)pMap.get("NAME");
+//		System.out.println(name);
 		
 		model.addAttribute("pMap", pMap);
 
