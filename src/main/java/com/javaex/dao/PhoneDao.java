@@ -95,6 +95,7 @@ public class PhoneDao {
 	// 사람추가 : Map 을 사용하는 사강의 상황 : 문법 설명
 	public int personInsert2(Map<String, String> pMap) {
 		System.out.println("PhoneDao>personInsert2");
+		// System.out.println(pMap.toString());
 
 		int count = -1;
 		count = sqlSession.insert("phonebook.personInsert2", pMap);
@@ -104,7 +105,6 @@ public class PhoneDao {
 
 	}
 
-	
 	// 사람 삭제
 	public int personDelete(int no) {
 		System.out.println("PhoneDao>personDelete");
@@ -115,7 +115,7 @@ public class PhoneDao {
 		return count;
 	}
 
-	// 1명 정보 가져오기
+	// 전화번호 수정폼 : 1명 정보 가져오기
 	public PersonVo getPerson(int no) {
 		System.out.println("PhoneDao>getPerson()");
 
@@ -126,13 +126,26 @@ public class PhoneDao {
 		return personVo;
 	}
 
+	// 전화번호 수정폼 : 1명 정보 가져오기--> map을 사용하는 가상의 상황: 문법설명
+	public Map<String, Object> getPerson2(int no) {
+		System.out.println("PhoneDao>getPerson2()");
+		//System.out.println(no);
+
+		Map<String, Object> pMap = sqlSession.selectOne("phonebook.getPerson2", no);
+		System.out.println(pMap);
+		
+//		String hp = (String)pMap.get("HP");
+//		System.out.println(hp);
+		
+		return pMap;
+	}
+
 	// 사람 수정
 	public int personUpdate(PersonVo vo) {
 		System.out.println("PhoneDao>personUpdate()");
 		int count = sqlSession.update("phonebook.personUpdate", vo);
 
 		return count;
-
 	}
 
 	// 사람 리스트(검색안할때)
@@ -240,49 +253,35 @@ public class PhoneDao {
 	}
 
 	// 1명 정보 가져오기
-	public PersonVo getPerson2(int personId) {
-		PersonVo personVo = null;
-
-		this.getConnection();
-
-		try {
-
-			// 3. SQL문 준비 / 바인딩 / 실행
-			// SQL문 준비
-			String query = "";
-			query += " select  person_id, ";
-			query += "         name, ";
-			query += "         hp, ";
-			query += "         company ";
-			query += " from person ";
-			query += " where person_id = ? ";
-
-			// 바인딩
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, personId);
-
-			// 실행
-			rs = pstmt.executeQuery();
-
-			// 4.결과처리
-			while (rs.next()) {
-
-				int id = rs.getInt("person_id");
-				String name = rs.getString("name");
-				String hp = rs.getString("hp");
-				String company = rs.getString("company");
-
-				personVo = new PersonVo(id, name, hp, company);
-			}
-
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		}
-
-		this.close();
-
-		return personVo;
-	}
+	/*
+	 * public PersonVo getPerson2(int personId) { PersonVo personVo = null;
+	 * 
+	 * this.getConnection();
+	 * 
+	 * try {
+	 * 
+	 * // 3. SQL문 준비 / 바인딩 / 실행 // SQL문 준비 String query = ""; query +=
+	 * " select  person_id, "; query += "         name, "; query += "         hp, ";
+	 * query += "         company "; query += " from person "; query +=
+	 * " where person_id = ? ";
+	 * 
+	 * // 바인딩 pstmt = conn.prepareStatement(query); pstmt.setInt(1, personId);
+	 * 
+	 * // 실행 rs = pstmt.executeQuery();
+	 * 
+	 * // 4.결과처리 while (rs.next()) {
+	 * 
+	 * int id = rs.getInt("person_id"); String name = rs.getString("name"); String
+	 * hp = rs.getString("hp"); String company = rs.getString("company");
+	 * 
+	 * personVo = new PersonVo(id, name, hp, company); }
+	 * 
+	 * } catch (SQLException e) { System.out.println("error:" + e); }
+	 * 
+	 * this.close();
+	 * 
+	 * return personVo; }
+	 */
 
 	// 사람 수정
 	public int personUpdate2(PersonVo personVo) {

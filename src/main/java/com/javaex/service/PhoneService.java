@@ -66,10 +66,20 @@ public class PhoneService {
 	// 전화번호 수정폼(정보가져오기)
 	public PersonVo getPerson(int no) {
 		System.out.println("PhoneService>getPerson()");
+
 		PersonVo personVo = phoneDao.getPerson(no);
 
 		return personVo;
 
+	}
+
+	// 전화번호 수정폼2(정보가져오기)
+	public Map<String, Object> getPerson2(int no) {
+		System.out.println("PhoneService>getPerson2()");
+
+		Map<String, Object> pMap = phoneDao.getPerson2(no);
+		//System.out.println(pMap);
+		return pMap;
 	}
 
 	// 전화번호 수정

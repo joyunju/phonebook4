@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,10 +75,9 @@ public class PhoneController {
 		System.out.println("PhoneController>write2()");
 
 		// 파라미터 꺼내기
-		/*
-		 * System.out.println(name); System.out.println(hp);
-		 * System.out.println(company);
-		 */
+		// System.out.println(name);
+		// System.out.println(hp);
+		// System.out.println(company);
 
 		// vo로 묶기
 		PersonVo personVo = new PersonVo(name, hp, company);
@@ -133,6 +133,21 @@ public class PhoneController {
 		model.addAttribute("personVo", personVo);
 
 		return "updateForm";
+	}
+
+	// 전화번호 수정폼2
+	@RequestMapping(value = "/updateForm2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String updateForm2(Model model, @RequestParam("no") int no) {
+		System.out.println("PhoneController>updateForm2()");
+
+		Map<String, Object> pMap = phoneService.getPerson2(no);
+		
+		String name = (String)pMap.get("NAME");
+		System.out.println(name);
+		
+		model.addAttribute("pMap", pMap);
+
+		return "updateForm2";
 	}
 
 	// 전화번호 수정
