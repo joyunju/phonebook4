@@ -32,7 +32,18 @@
 		]]>
 
 	</insert>
+	
+	<!-- 전화번호 저장 : Map 을 사용하는 사강의 상황 (문법 설명용)  -->
+	<insert id="personInsert2" parameterType="map">
+	<!-- parameterType="map" : map은 위치가 없으니까 map으로 기입  -->
+		<![CDATA[
+			insert into person
+			values (seq_person_id.nextval, #{name}, #{hp}, #{company})
+		]]>
 
+	</insert>
+	
+	
 	<!-- 전화번호 삭제 -->
 	<delete id="personDelete" parameterType="int">
 		<![CDATA[
@@ -53,6 +64,19 @@
 			where person_id = #{no}
 		]]>
 	</select>
+	
+	<!-- 1명정보 가져오기 (회원정보폼) map을 사용하는 가상의 상황: 문법설명-->
+	<select id="getPerson2" parameterType="int" resultType="map">
+		<![CDATA[
+			select  person_id personId,
+        			name,
+			        hp,
+			        company
+			from person
+			where person_id= #{no}
+		]]>
+	</select>
+	
 
 	<!-- 전화번호 수정 -->
 	<update id="personUpdate" parameterType="com.javaex.vo.PersonVo">
